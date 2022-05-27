@@ -6,5 +6,7 @@ export default {
     description:'Cambia il prefisso',
     aliases:['px'],
 
-    callback: ({message}) =>{message.reply("pong")}
+    callback: ({message}) =>{
+        //TODO
+    }
 } as ICommand

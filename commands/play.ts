@@ -25,6 +25,6 @@ export default {
         } catch (error) {
             return message.reply('An error occurred')
         }
-
+        //gotta implement playlists
     }
 } as ICommand

@@ -14,6 +14,7 @@ export default {
         });
 
     console.log(queue.tracks);
+    //need to make ui
 
     }
 } as ICommand
