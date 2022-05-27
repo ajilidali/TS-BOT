@@ -18,8 +18,9 @@ export default {
             metadata: message.channel,
         });
         res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
+        if (!queue.connection) await queue.connect(message.member.voice.channel)
         if (!queue.playing) await queue.play();
 
     }
-    
+
 } as ICommand
