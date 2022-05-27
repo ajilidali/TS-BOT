@@ -7,13 +7,9 @@ export default {
     description: 'Volume',
     aliases: ['stop', 'dc'],
 
-    callback: async ({ message }) => {
+    callback: ({ message }) => {
         const queue = player.createQueue(message.guild)
-        if (queue || queue.playing) {
-            queue.clear()
-            queue.destroy(true)
-            let Text="adios"
-            return  await message.channel.send(Text)
-        }
+        !queue || !queue.playing ? message.channel.send("Not connected") : queue.destroy(true)
+        return
     }
 } as ICommand

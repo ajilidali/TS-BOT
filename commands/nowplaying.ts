@@ -44,7 +44,7 @@ export default {
                 title: 'Loading...',
                 requestedBy: 'Unknown'
             }
-            let newEmbed = new MessageEmbed
+            let newEmbed = new MessageEmbed();
             newEmbed.setThumbnail(track.thumbnail || 'https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/43b892a2-9859-4905-be03-384c222c1f17/excerpt-lazy-load.png'
             )
             newEmbed.setAuthor({
