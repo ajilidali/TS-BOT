@@ -7,6 +7,8 @@ import config from "./config";
 
 //import testSchema from './test-schema'
 
+dotenv.config();
+
 const client = new DiscordJS.Client({
   intents: [
     Intents.FLAGS.GUILDS,
