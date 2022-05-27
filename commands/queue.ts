@@ -14,7 +14,7 @@ export default {
         });
 
     console.log(queue.tracks);
-    //need to make ui
+    //need to make embed
 
     }
 } as ICommand
