@@ -10,7 +10,7 @@ export default {
     callback: async ({ client, message }) => {
         const queue = player.createQueue(message.guild)
 
-        if (!queue.playing) return message.reply('Not playing')
+        if (!queue || !queue.playing) return message.reply('Not playing')
 
         let track = queue.current
         const progress = queue.createProgressBar();
