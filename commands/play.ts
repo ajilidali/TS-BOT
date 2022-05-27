@@ -9,7 +9,7 @@ export default {
     description: 'Play',
     aliases: ['p'],
 
-    /* callback: async ({ client, message, args }) => {
+    callback: async ({ client, message, args }) => {
         const res = await player.search(args.join(" "), {
             requestedBy: message.member,
             searchEngine: QueryType.AUTO,
@@ -25,37 +25,6 @@ export default {
             return message.reply('An error occurred')
         }
         //gotta implement playlists
-    } */
-    callback: async ({client, message, args}) => {
-        const res = await player.search(args.join(" "), {
-          requestedBy: message.member,
-          searchEngine: QueryType.AUTO,
-        });
+    }
     
-        const queue = await player.createQueue(message.guild, {
-          metadata: message.channel,
-        });
-    
-        try {
-          if (!queue.connection) await queue.connect(message.member.voice.channel);
-        } catch {
-          await player.deleteQueue(message.guild.id);
-          return message.channel.send(
-            `I can't join the voice channel ${message.author}... try again ? ❌`
-          );
-        }
-    
-        await message.channel.send(
-          `Loading your ${res.playlist ? "playlist" : "track"}... 🎧`
-        );
-    
-        res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
-    
-        if (!queue.playing) {
-          await queue.play();
-          return message.channel.send('playin');
-        } else {
-          return message.channel.send('added to q');
-        }
-      },
 } as ICommand
