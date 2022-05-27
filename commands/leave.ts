@@ -12,7 +12,8 @@ export default {
         if (queue || queue.playing) {
             queue.clear()
             queue.destroy(true)
-            return message.channel.send('Adios')
+            let Text="adios"
+            return  await message.channel.send(Text)
         }
     }
 } as ICommand

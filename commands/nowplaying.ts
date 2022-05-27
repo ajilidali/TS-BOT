@@ -33,31 +33,32 @@ export default {
             embeds: [embed]
         })
 
-        await setInterval(() => {
+        setInterval(() => {
             let queue = player.createQueue(message.guild)
-            let timestamp = queue.getPlayerTimestamp();
-            let progress = queue.createProgressBar();
-            if (!queue) console.log("No queue")
-            let track = queue.current || { //queue.current exception when song finishes and is last in queue
+            let timestamp = queue.getPlayerTimestamp()
+            let progress = queue.createProgressBar()
+            if (!queue)
+                console.log("No queue")
+            let track = queue.current || {
                 thumbnail: 'https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/43b892a2-9859-4905-be03-384c222c1f17/excerpt-lazy-load.png',
                 title: 'Loading...',
                 requestedBy: 'Unknown'
-            };
-            let newEmbed = new MessageEmbed;
-            newEmbed.setThumbnail(track.thumbnail || 'https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/43b892a2-9859-4905-be03-384c222c1f17/excerpt-lazy-load.png',
-            );
+            }
+            let newEmbed = new MessageEmbed
+            newEmbed.setThumbnail(track.thumbnail || 'https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/43b892a2-9859-4905-be03-384c222c1f17/excerpt-lazy-load.png'
+            )
             newEmbed.setAuthor({
                 name: track.title || 'Loading...',
                 iconURL: client.user.displayAvatarURL({ size: 1024, dynamic: true })
-            });
+            })
             newEmbed.setFooter({
                 text: "Made by George",
                 iconURL: message.author.avatarURL({ dynamic: true })
-            });
-            newEmbed.setDescription(`Volume **${queue.volume}**%\nRequested by ${track.requestedBy} \n${progress} (**${timestamp.progress || 'NaN'}**%)`);
+            })
+            newEmbed.setDescription(`Volume **${queue.volume}**%\nRequested by ${track.requestedBy} \n${progress} (**${timestamp.progress || 'NaN'}**%)`)
             newMessage.edit({
                 embeds: [newEmbed],
-            }).catch(error => { return; })
+            }).catch(() => { return })
         }, 2000);
     }
 } as ICommand
