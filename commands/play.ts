@@ -17,14 +17,9 @@ export default {
         const queue = player.createQueue(message.guild, {
             metadata: message.channel,
         });
-        try {
-            !queue.connection ? await queue.connect(message.member.voice.channel).then(() => {
-                queue.play(res.tracks[0])
-            }) : !queue.playing ? queue.play(res.tracks[0]) : queue.addTrack(res.tracks[0])
-        } catch (error) {
-            return message.reply('An error occurred')
-        }
-        //gotta implement playlists
+        res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
+        if (!queue.playing) await queue.play();
+
     }
     
 } as ICommand

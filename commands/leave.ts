@@ -8,11 +8,10 @@ export default {
     aliases: ['stop', 'dc'],
 
     callback: async ({ message }) => {
-        const queue = await player.createQueue(message.guild)
+        const queue = player.createQueue(message.guild)
         if (queue || queue.playing) {
-            queue.stop()
             queue.clear()
-            queue.destroy()
+            queue.destroy(true)
             return message.channel.send('Adios')
         }
     }
