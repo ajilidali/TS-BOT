@@ -12,12 +12,29 @@ export default {
 
         if (!queue.playing) return message.reply('Not playing')
 
-        const newMessage = await message.reply(queue.current.title);
+        let track = queue.current
+        const progress = queue.createProgressBar();
+        const timestamp = queue.getPlayerTimestamp();
+        let embed = new MessageEmbed().setDescription(
+            `Volume **${queue.volume}**%\nRequested by ${track.requestedBy}\n${progress} (**${timestamp.progress}**%)`
+        );
+        embed.setThumbnail(track.thumbnail);
+        embed.setAuthor({
+            name: track.title || 'Loading...',
+            iconURL: client.user.displayAvatarURL({ size: 1024, dynamic: true })
+        });
+        embed.setTimestamp();
+        embed.setFooter({
+            text: "Made by George",
+            iconURL: message.author.avatarURL({ dynamic: true })
+        });
+
+        const newMessage = await message.reply({
+            embeds: [embed]
+        })
 
         await setInterval(() => {
-            const queue = player.createQueue(message.guild, {
-                metadata: message.channel,
-            })
+            const queue = player.createQueue(message.guild)
             let timestamp = queue.getPlayerTimestamp();
             var progress = queue.createProgressBar();
             if (!queue) console.log("No queue")
@@ -29,11 +46,18 @@ export default {
             let newEmbed = new MessageEmbed;
             newEmbed.setThumbnail(track.thumbnail || 'https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/43b892a2-9859-4905-be03-384c222c1f17/excerpt-lazy-load.png',
             );
-            newEmbed.setAuthor(track.title || 'Loading...', client.user.displayAvatarURL({ size: 1024, dynamic: true }));
+            newEmbed.setAuthor({
+                name: track.title || 'Loading...',
+                iconURL: client.user.displayAvatarURL({ size: 1024, dynamic: true })
+            });
+            newEmbed.setFooter({
+                text: "Made by George",
+                iconURL: message.author.avatarURL({ dynamic: true })
+            });
             newEmbed.setDescription(`Volume **${queue.volume}**%\nRequested by ${track.requestedBy} \n${progress} (**${timestamp.progress || 'NaN'}**%)`);
             newMessage.edit({
                 embeds: [newEmbed],
-            }).catch(error =>{return;})
+            }).catch(error => { return; })
         }, 2000);
     }
 } as ICommand
