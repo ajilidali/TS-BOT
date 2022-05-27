@@ -1,6 +1,3 @@
-if (process.env.NODE_ENV != "production") {
-  dotenv.config();
-}
 import DiscordJS, { Intents } from "discord.js";
 import dotenv from "dotenv";
 import wokcommands from "wokcommands";
@@ -8,6 +5,9 @@ import path from "path";
 import { Player } from "discord-player";
 import config from "./config";
 
+if (process.env.NODE_ENV != "production") {
+    dotenv.config();
+  }
 //import testSchema from './test-schema'
 
 const client = new DiscordJS.Client({
