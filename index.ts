@@ -3,6 +3,8 @@ import dotenv from 'dotenv'
 import wokcommands from 'wokcommands'
 import path from 'path'
 import { Player } from 'discord-player'
+import config from './config'
+
 //import testSchema from './test-schema'
 
 dotenv.config()
@@ -15,7 +17,7 @@ const client = new DiscordJS.Client({
     ]
 })
 
-const player = new Player(client);
+const player = new Player(client, config.opt.discordPlayer);
 
 
 client.on('ready', () => {

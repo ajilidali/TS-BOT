@@ -1,9 +1,11 @@
 import { ICommand } from 'wokcommands'
+import player from '../index'
 
 
 export default {
-    category: 'testing',
-    description: 'Risponde con pong',
+    category: 'Music',
+    description: 'Volume',
 
-    callback: ({ message }) => { message.reply('pong') }
+    callback: ({ message }) => {
+    }
 } as ICommand

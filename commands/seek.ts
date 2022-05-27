@@ -6,7 +6,7 @@ const ms = require('ms')
 
 export default {
     category: 'Music',
-    description: 'Cambia il prefisso',
+    description: 'Avanti e indietro nel tempo',
 
 
     callback: async ({ message, args }) => {

@@ -29,14 +29,14 @@ export default {
             iconURL: message.author.avatarURL({ dynamic: true })
         });
 
-        const newMessage = await message.reply({
+        let newMessage = await message.reply({
             embeds: [embed]
         })
 
         await setInterval(() => {
-            const queue = player.createQueue(message.guild)
+            let queue = player.createQueue(message.guild)
             let timestamp = queue.getPlayerTimestamp();
-            var progress = queue.createProgressBar();
+            let progress = queue.createProgressBar();
             if (!queue) console.log("No queue")
             let track = queue.current || { //queue.current exception when song finishes and is last in queue
                 thumbnail: 'https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/43b892a2-9859-4905-be03-384c222c1f17/excerpt-lazy-load.png',
