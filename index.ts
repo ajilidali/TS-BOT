@@ -21,6 +21,8 @@ const client = new DiscordJS.Client({
 const player = new Player(client, config.opt.discordPlayer);
 
 client.on("ready", () => {
+
+  console.log("ready")
   new wokcommands(client, {
     commandDir: path.join(__dirname, "commands"),
     typeScript: true,

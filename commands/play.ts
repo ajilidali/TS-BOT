@@ -10,6 +10,8 @@ export default {
     aliases: ['p'],
 
     callback: async ({ client, message, args }) => {
+        if (!args[0]) { message.channel.send("Gimme something to search")
+        return }
         const res = await player.search(args.join(" "), {
             requestedBy: message.member,
             searchEngine: QueryType.AUTO,
@@ -20,6 +22,8 @@ export default {
         res.playlist ? queue.addTracks(res.tracks) : queue.addTrack(res.tracks[0]);
         if (!queue.connection) await queue.connect(message.member.voice.channel)
         if (!queue.playing) await queue.play();
+        const embed = new MessageEmbed()
+        // TODO:add embed
 
     }
 
