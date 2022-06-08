@@ -4,4 +4,4 @@ This bot is a small project and a discord helper written in Typescript. It will 
 
 TODO:
 - [ ] Release a functional version of the bot
-- [ ] Integrate mongodb
+- [ ] Integrate mongodb (maybe mongoose too)
